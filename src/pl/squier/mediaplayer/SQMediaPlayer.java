@@ -97,6 +97,11 @@ public class SQMediaPlayer extends Application implements EventHandler<MouseEven
 	 */
 	private EditableList editableList;
 	private boolean listShown = false;
+	
+	/*
+	 * Container for file's names, used in EditableList
+	 * when label is double clicked player starts to play this media
+	 */
 	private Label[] mediaFileName;
 	
 	public static void main(String[] args) {
@@ -1046,7 +1051,7 @@ public class SQMediaPlayer extends Application implements EventHandler<MouseEven
 		private Button exit;
 		private Button minimize;
 		
-		/*media files names*/
+		/*list of loaded files*/
 		private VBox mediaFileList;
 		
 		/*Point where list window was, and where mouse clicked*/
@@ -1086,7 +1091,7 @@ public class SQMediaPlayer extends Application implements EventHandler<MouseEven
 			SCENE = new Scene(vbox, 300, 500);
 			SCENE.getStylesheets().add("pl/squier/resources/stylesheets/list.css");
 			
-			initMovable();
+			initMovable();	//allows to move list on the screen
 			
 			SECONDARY_STAGE.setScene(SCENE);
 			
@@ -1119,6 +1124,9 @@ public class SQMediaPlayer extends Application implements EventHandler<MouseEven
 			
 		}
 		
+		/*
+		 * filling play list with media names
+		 */
 		private void initPlayList() {
 			
 			mediaFileList = new VBox(0);
@@ -1141,6 +1149,7 @@ public class SQMediaPlayer extends Application implements EventHandler<MouseEven
 
 		@Override
 		public void handle(MouseEvent e) {
+			
 			
 			if(e.getButton().equals(MouseButton.PRIMARY) && e.getClickCount() == 2) {
 				
